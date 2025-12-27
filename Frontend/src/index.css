@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+.actionbtns {
+    @apply  h-12 p-2 w-20 justify-center items-center flex text-2xl rounded-lg
+    
+    cursor-pointer;
+}
+main::-webkit-scrollbar{
+    width: 0px;
+}
+.profile{
+  scrollbar-width:none;
+}
+
