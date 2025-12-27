@@ -6,9 +6,8 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import AddPostCard from "../components/AddPostCard.jsx";
 import { AnimatePresence } from "framer-motion";
-import UserProfile from "../components/UserProfile.jsx";
 import PostCard from "../components/PostCard.jsx";
-import SavedProfile from "../components/SavedProfile.jsx";
+import Profile from "../components/Profile.jsx";
 function Home() {
   const fetchPost = async () => {
     const response = await axios.get(
@@ -109,10 +108,8 @@ function Home() {
         <Navbar />
         <AnimatePresence>{isAddPostVisible && <AddPostCard />}</AnimatePresence>
         <AnimatePresence>
-          {isUserProfileVisible && <UserProfile />}
-        </AnimatePresence>
-        <AnimatePresence>
-          {isSavedPostsVisible && <SavedProfile />}
+          {isUserProfileVisible && <Profile />}
+          {isSavedPostsVisible && <Profile />}
         </AnimatePresence>
         <main className="flex-1 bg-linear-to-b from-gray-900 to-gray-800 p-6 overflow-y-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">

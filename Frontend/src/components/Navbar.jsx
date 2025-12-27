@@ -26,7 +26,7 @@ function Navbar() {
           <FaHome />
         </div>
         <div
-          onClick={() => setIsUserProfileVisible(true)}
+          onClick={() => { setIsUserProfileVisible(true); setIsSavedPostsVisible(false) }}
           className={
             "actionbtns bg-gray-700 hover:bg-gray-600 transition-colors duration-300"
           }
@@ -36,6 +36,7 @@ function Navbar() {
         <div
           onClick={() => {
             setIsSavedPostsVisible(true);
+            setIsUserProfileVisible(false)
             fetchSavedPosts();
           }}
           className={
