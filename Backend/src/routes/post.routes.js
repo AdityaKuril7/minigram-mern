@@ -23,7 +23,7 @@ postRouter.route("/getPosts").get(getAllPost); // get all posts
 postRouter.route("/getSpecificPost/:id").get(getPostById); // get spcific post, req.params
 postRouter.route("/addPost").post(upload.single("image"), addPost);
 postRouter.route("/updatePost/:id").put(updatePostCaption); // req.params
-postRouter.route("/deletePost/:id").delete(deletePostById); // delete post
+postRouter.route("/deletePost/:postId").delete(deletePostById); // delete post
 postRouter.route("/getUsersPost/:userId").get(getUserPost);
 
 // Save Post

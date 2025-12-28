@@ -76,9 +76,9 @@ export const updatePostCaption = async (req, res) => {
 };
 
 export const deletePostById = async (req, res) => {
-  const { id } = req.params;
+  const { postId } = req.params;
   try {
-    const result = await Post.findByIdAndDelete(id);
+    const result = await Post.findByIdAndDelete(postId);
     if (!result)
       return res.send({ success: false, message: "No Records Found !" });
     res.send({ success: true, message: "Deleted Successfully !" });

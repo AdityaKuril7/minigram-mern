@@ -1,32 +1,65 @@
 import { useContext } from "react";
 import AppContext from "../Context/AppContext";
-import { FaBookmark, FaHeart, FaShare, FaShareAlt } from "react-icons/fa";
+import {
+  FaBookmark,
+  FaHeart,
+  FaShare,
+  FaShareAlt,
+  FaTrash,
+} from "react-icons/fa";
 import axios from "axios";
 
 function PostCard({ post }) {
-  const { userData, savedPost, fetchSavedPosts,likedByUser, setLikedByUser,fetchUserLike } = useContext(AppContext);
+  const {
+    userData,
+    savedPost,
+    fetchSavedPosts,
+    likedByUser,
+    setLikedByUser,
+    isUserProfileVisible,
+    fetchUserLike,
+    fetchUserPosts,
+    fetchPost
+  } = useContext(AppContext);
 
   const isSaved = savedPost.some(
-    (item) => item?.postDetails?._id.toString() === post._id.toString(),
-  ); 
-  const isLiked = Array.isArray(likedByUser) && likedByUser.some((item) => item.postId.toString() === post._id.toString());
-  const handleLikePost = async () =>{
-    if(isLiked){      
-      const response = await axios.post("http://localhost:8000/api/v1/post/unlikePost",{
-        userId: userData?.user?._id,
-        postId: post._id,
-      })
-      console.log(response.data)
-      fetchUserLike(); 
-    }else{ 
-      const response = await axios.post("http://localhost:8000/api/v1/post/Like",{
-        userId: userData?.user?._id,
-        postId: post._id,
-      })
-      console.log(response.data)
-      fetchUserLike(); 
-      
+    (item) => item?.postDetails?._id.toString() === post._id.toString()
+  );
+  const isLiked =
+    Array.isArray(likedByUser) &&
+    likedByUser.some((item) => item.postId.toString() === post._id.toString());
+  const handleLikePost = async () => {
+    if (isLiked) {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/post/unlikePost",
+        {
+          userId: userData?.user?._id,
+          postId: post._id,
+        }
+      );
+      console.log(response.data);
+      fetchUserLike();
+    } else {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/post/Like",
+        {
+          userId: userData?.user?._id,
+          postId: post._id,
+        }
+      );
+      console.log(response.data);
+      fetchUserLike();
     }
+  };
+
+  const handlePostDelete = async () =>{
+    const msg = prompt("Are Your sure ? yes or no ")
+    if(msg.toLowerCase() === 'yes'){  
+      const response = await axios.delete(`http://localhost:8000/api/v1/post/deletePost/${post._id}`)
+      if(!response.data.success) return console.log(response.data)
+      fetchPost()
+      fetchUserPosts()
+   }
   }
 
   const handleSave = async () => {
@@ -36,7 +69,7 @@ function PostCard({ post }) {
         {
           userId: userData?.user?._id,
           postId: post._id,
-        },
+        }
       );
       console.log(response.data);
       fetchSavedPosts();
@@ -46,7 +79,7 @@ function PostCard({ post }) {
         {
           userId: userData?.user?._id,
           postId: post._id,
-        },
+        }
       );
       console.log(response.data);
       fetchSavedPosts();
@@ -67,6 +100,13 @@ function PostCard({ post }) {
             {new Date(post?.createdAt).toLocaleDateString()}
           </p>
         </div>
+        {isUserProfileVisible && (
+          <div className="flex w-50 justify-end">
+            <p>
+               <FaTrash className="text-red-500 text-lg" onClick={handlePostDelete} />
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="w-full h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
@@ -81,11 +121,19 @@ function PostCard({ post }) {
         <span className="flex gap-2 items-center">
           <FaShareAlt /> share
         </span>
-        <span className={`flex gap-2 items-center ${isSaved ? "text-blue-500":""}`} onClick={handleSave}>
-          <FaBookmark /> {isSaved ? "Saved":"Save"}
+        <span
+          className={`flex gap-2 items-center ${
+            isSaved ? "text-blue-500" : ""
+          }`}
+          onClick={handleSave}
+        >
+          <FaBookmark /> {isSaved ? "Saved" : "Save"}
         </span>
-        <span className={`flex gap-2 items-center ${isLiked ? "text-red-500":""}`} onClick={handleLikePost}>
-          <FaHeart /> {isLiked ? "Liked":"Like"}
+        <span
+          className={`flex gap-2 items-center ${isLiked ? "text-red-500" : ""}`}
+          onClick={handleLikePost}
+        >
+          <FaHeart /> {isLiked ? "Liked" : "Like"}
         </span>
       </div>
     </div>
