@@ -52,7 +52,7 @@ function Home() {
       setLikedByUser(response.data);
     } catch (error) {
       console.error("Error fetching likes:", error);
-      setLikedByUser([]); // Set empty array on error
+      setLikedByUser([]);
     }
   };
 
@@ -80,10 +80,14 @@ function Home() {
   const [isUserProfileVisible, setIsUserProfileVisible] = useState(false);
   const [isSavedPostsVisible, setIsSavedPostsVisible] = useState(false);
   const [isLikedPostsVisible, setIsLikedPostsVisible] = useState(false);
+
+  //constants
+  const [isCaptionCardVisible, setIsCaptionCardVisible] = useState(false);
+
   return (
     <AppContext
       value={{
-        fetchPost,
+        fetchPost,fetchUser,
         userData,
         posts,
         isAddPostVisible,
@@ -101,7 +105,8 @@ function Home() {
         fetchUserLike,
         likedByUser,
         setLikedByUser,
-        isLikedPostsVisible, setIsLikedPostsVisible 
+        isLikedPostsVisible, setIsLikedPostsVisible,
+        isCaptionCardVisible, setIsCaptionCardVisible
       }}
     >
       <div className={`Home flex flex-col h-screen w-screen `}>

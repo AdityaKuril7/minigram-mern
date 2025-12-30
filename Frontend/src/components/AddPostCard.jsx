@@ -57,7 +57,7 @@ function AddPostCard() {
       <div
         className="w-full max-w-2xl mx-auto bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-700">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-900 to-blue-900 p-4 flex justify-between items-center">
+        <div className=" p-4 flex justify-between items-center">
           <h2 className="text-white text-xl font-bold">Create New Post</h2>
           <button onClick={handleCancel} className="text-white hover:text-gray-300 transition-colors">
             <FaTimes size={24}/>
@@ -90,7 +90,7 @@ function AddPostCard() {
             <div className="relative">
               {!imagePreview ? (
                 <label
-                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-600 rounded-lg cursor-pointer hover:border-purple-500 transition-colors bg-gray-700 hover:bg-gray-750">
+                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-600 rounded-lg cursor-pointer  transition-colors bg-gray-700 hover:bg-gray-750">
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <FaImage className="text-gray-400 text-6xl mb-3"/>
                     <p className="mb-2 text-sm text-gray-400">
@@ -134,7 +134,7 @@ function AddPostCard() {
               onChange={(e) => setCaption(e.target.value)}
               placeholder="Write a caption..."
               rows="4"
-              className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:border-purple-500 focus:outline-none resize-none placeholder-gray-400"
+              className="w-full bg-gray-700 text-white rounded-lg p-3 border border-gray-600 focus:outline-none resize-none placeholder-gray-400"
             />
           </div>
 
@@ -142,13 +142,13 @@ function AddPostCard() {
           <div className="flex gap-4 pt-4">
             <button
               onClick={handlePost}
-              className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="flex-1 bg-blue-900 hover:bg-blue-500 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Post
             </button>
             <button
               onClick={handleCancel}
-              className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-colors duration-300 border border-gray-600"
+              className="flex-1 bg-red-900 hover:bg-red-500 text-white font-semibold py-3 rounded-lg transition-colors duration-300 border border-gray-600"
             >
               Cancel
             </button>
