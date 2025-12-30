@@ -1,9 +1,12 @@
 import { useContext } from "react";
-import { motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import AppContext from "../Context/AppContext.js";
 import PostCard from "../components/PostCard.jsx";
 import { TbCircleX } from "react-icons/tb";
 import SavedCard from "./SavedCard.jsx";
+import {FaPen} from "react-icons/fa";
+import axios from "axios";
+import {CaptionCard} from "./CaptionCard.jsx";
 function Profile() {
   const {
     userData,
@@ -13,6 +16,8 @@ function Profile() {
     isUserProfileVisible,
     isSavedPostsVisible,
     savedPost,
+    fetchUser,
+    isCaptionCardVisible, setIsCaptionCardVisible
   } = useContext(AppContext);
 
   const handleCalcel = () => {
@@ -21,6 +26,9 @@ function Profile() {
       setIsSavedPostsVisible(false);
     }
   };
+
+
+
   return (
     <motion.div
       initial={{opacity:0}}
@@ -34,6 +42,10 @@ function Profile() {
         "profile h-screen w-screen fixed top-0 flex justify-center items-center left-0 bg-gray-800 z-50 overflow-scroll"
       }
     >
+      <AnimatePresence>
+      {isCaptionCardVisible && <CaptionCard />}
+       </AnimatePresence>
+
       <div className="w-full bg-gray-800 h-full flex-flex-col p-4">
         <div className="h-5 flex justify-end text-3xl">
           <TbCircleX
@@ -61,10 +73,12 @@ function Profile() {
                 {new Date(userData?.user?.createdAt).toLocaleDateString()}
               </span>
             </p>
-            <p className="text-center text-2xl mt-5 font-bold bg-gray-700 shadow-black shadow-md p-2 rounded-2xl">
-              {isUserProfileVisible ? "Your Posts" : "Saved Posts"}
-            </p>
           </div>
+          <p className={'text-white text-lg'}>{userData?.user?.bio} <span className={'text-purple-500 inline-block pl-2 cursor-pointer'} onClick={()=>setIsCaptionCardVisible(true)}><FaPen /></span></p>
+
+          <p className="text-center text-white text-2xl mt-5 font-bold bg-gray-700 shadow-black shadow-md p-2 rounded-2xl">
+            {isUserProfileVisible ? "Your Posts" : "Saved Posts"}
+          </p>
         </div>
         <div className="main w-full h-full p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">

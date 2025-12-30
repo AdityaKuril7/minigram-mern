@@ -17,5 +17,4 @@ userRouter.route("/addUser").post(addUser); // req.body;
 userRouter.route("/updateUser/:id").put(updateUserById); // req.params;
 userRouter.route("/deleteUser/:id").delete(deleteUserById); // req.params;
 userRouter.route("/loginUser").post(Login);
-
 export { userRouter };
