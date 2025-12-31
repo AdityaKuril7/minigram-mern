@@ -37,7 +37,6 @@ function PostCard({ post }) {
           postId: post._id,
         }
       );
-      console.log(response.data);
       fetchUserLike();
     } else {
       const response = await axios.post(
@@ -47,7 +46,6 @@ function PostCard({ post }) {
           postId: post._id,
         }
       );
-      console.log(response.data);
       fetchUserLike();
     }
   };
@@ -71,7 +69,6 @@ function PostCard({ post }) {
           postId: post._id,
         }
       );
-      console.log(response.data);
       fetchSavedPosts();
     } else {
       const response = await axios.post(
@@ -81,7 +78,6 @@ function PostCard({ post }) {
           postId: post._id,
         }
       );
-      console.log(response.data);
       fetchSavedPosts();
     }
   };

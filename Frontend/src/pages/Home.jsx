@@ -14,14 +14,12 @@ function Home() {
       "http://localhost:8000/api/v1/post/getPosts",
     );
     setPosts(response.data);
-    console.log(response.data);
   };
   const fetchUser = async () => {
     const response = await axios.get(
       `http://localhost:8000/api/v1/user/getUser/${state?.userId}`,
     );
     setUserData(response.data);
-    console.log(response.data);
   };
 
   const fetchUserPosts = async () => {
@@ -29,17 +27,18 @@ function Home() {
       `http://localhost:8000/api/v1/post/getUsersPost/${state?.userId}`,
     );
     setPostByUser(response.data);
-    console.log(response.data);
   };
 
   const fetchSavedPosts = async () => {
-    const response = await axios.get(
-      `http://localhost:8000/api/v1/post/getSavedPost/${state?.userId}`,
-    );
-    setSavedPost(response.data);
-    console.log("Saved ...");
-
-    console.log(response.data);
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/v1/post/getSavedPost/${state?.userId}`,
+      );
+      setSavedPost(response.data);
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const fetchUserLike = async () => {
@@ -63,6 +62,9 @@ function Home() {
     fetchUserPosts();
     fetchSavedPosts();
     fetchUserLike();
+    console.log("Hello world");
+    console.log("I am aditya");
+
   }, []);
   
   // Data from the api

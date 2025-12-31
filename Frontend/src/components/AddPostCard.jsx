@@ -37,7 +37,6 @@ function AddPostCard() {
     formData.append("caption", caption);
     formData.append("userId", userData?.user?._id);
     const result = await axios.post('http://localhost:8000/api/v1/post/addPost', formData)
-    console.log(result)
     fetchPost();
     setIsAddPostVisible(false)
   }
