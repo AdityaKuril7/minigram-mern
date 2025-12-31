@@ -58,7 +58,6 @@ function Home() {
   useEffect(() => {
     fetchUser();
     fetchPost();
-    fetchPost();
     fetchUserPosts();
     fetchSavedPosts();
     fetchUserLike();
