@@ -48,6 +48,7 @@ function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyUp={(e)=> e.key === 'Enter' ? handleLogin() : null}
             />
           </div>
           <div className="flex justify-center items-center mt-5">

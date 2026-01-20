@@ -14,14 +14,12 @@ function Home() {
       "http://localhost:8000/api/v1/post/getPosts",
     );
     setPosts(response.data);
-    console.log(response.data);
   };
   const fetchUser = async () => {
     const response = await axios.get(
       `http://localhost:8000/api/v1/user/getUser/${state?.userId}`,
     );
     setUserData(response.data);
-    console.log(response.data);
   };
 
   const fetchUserPosts = async () => {
@@ -29,17 +27,18 @@ function Home() {
       `http://localhost:8000/api/v1/post/getUsersPost/${state?.userId}`,
     );
     setPostByUser(response.data);
-    console.log(response.data);
   };
 
   const fetchSavedPosts = async () => {
-    const response = await axios.get(
-      `http://localhost:8000/api/v1/post/getSavedPost/${state?.userId}`,
-    );
-    setSavedPost(response.data);
-    console.log("Saved ...");
-
-    console.log(response.data);
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/v1/post/getSavedPost/${state?.userId}`,
+      );
+      setSavedPost(response.data);
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const fetchUserLike = async () => {
@@ -51,17 +50,19 @@ function Home() {
       setLikedByUser(response.data);
     } catch (error) {
       console.error("Error fetching likes:", error);
-      setLikedByUser([]); // Set empty array on error
+      setLikedByUser([]);
     }
   };
 
   useEffect(() => {
     fetchUser();
     fetchPost();
-    fetchPost();
     fetchUserPosts();
     fetchSavedPosts();
     fetchUserLike();
+    console.log("Hello world");
+    console.log("I am aditya");
+
   }, []);
 
   // Data from the api
@@ -79,10 +80,14 @@ function Home() {
   const [isUserProfileVisible, setIsUserProfileVisible] = useState(false);
   const [isSavedPostsVisible, setIsSavedPostsVisible] = useState(false);
   const [isLikedPostsVisible, setIsLikedPostsVisible] = useState(false);
+
+  //constants
+  const [isCaptionCardVisible, setIsCaptionCardVisible] = useState(false);
+
   return (
     <AppContext
       value={{
-        fetchPost,
+        fetchPost,fetchUser,
         userData,
         posts,
         isAddPostVisible,
@@ -100,8 +105,13 @@ function Home() {
         fetchUserLike,
         likedByUser,
         setLikedByUser,
+<<<<<<< HEAD
         isLikedPostsVisible,
         setIsLikedPostsVisible,
+=======
+        isLikedPostsVisible, setIsLikedPostsVisible,
+        isCaptionCardVisible, setIsCaptionCardVisible
+>>>>>>> 4df90be2a09c8cdc3ec1f1dfe9857316cc529137
       }}
     >
       <div className={`Home flex flex-col h-screen w-screen `}>

@@ -17,7 +17,6 @@ function SavedCard({ post }) {
           postId: post._id,
         },
       );
-      console.log(response.data);
       fetchUserLike();
     } else {
       const response = await axios.post(
@@ -27,7 +26,6 @@ function SavedCard({ post }) {
           postId: post._id,
         },
       );
-      console.log(response.data);
       fetchUserLike();
     }
   };
@@ -46,7 +44,6 @@ function SavedCard({ post }) {
         },
       );
       fetchSavedPosts();
-      console.log(response.data);
     } else {
       const response = await axios.post(
         "http://localhost:8000/api/v1/post/savePost",
@@ -55,7 +52,6 @@ function SavedCard({ post }) {
           postId: post.postDetails._id,
         },
       );
-      console.log(response.data);
       fetchSavedPosts();
     }
   };

@@ -22,6 +22,18 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "user",
     },
+    isPrivate:{
+      type:Boolean,
+      default:false
+    },
+    isActive:{
+      type:Boolean,
+      default:false
+    },
+    bio:{
+      type:String,
+      default:""
+    }
   },
   { timestamps: true }
 );

@@ -9,7 +9,14 @@ function Navbar() {
     setIsUserProfileVisible,
     setIsSavedPostsVisible,
     fetchSavedPosts,
+    fetchUserPosts
   } = React.useContext(AppContext);
+
+  const handleUserProfile = () => {
+    setIsUserProfileVisible(true);
+    setIsSavedPostsVisible(false);
+    fetchUserPosts();
+  }
   return (
     <div
       className={`h-20 w-full bg-gray-900 text-white flex justify-between items-center border-b-2`}
@@ -26,7 +33,7 @@ function Navbar() {
           <FaHome />
         </div>
         <div
-          onClick={() => { setIsUserProfileVisible(true); setIsSavedPostsVisible(false) }}
+          onClick={() => handleUserProfile() }
           className={
             "actionbtns bg-gray-700 hover:bg-gray-600 transition-colors duration-300"
           }
