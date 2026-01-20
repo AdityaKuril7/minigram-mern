@@ -19,6 +19,10 @@ export function CaptionCard() {
       const response = await axios.put(`http://localhost:8000/api/v1/user/updateUser/${userData?.user?._id}`, {
         bio: caption
       })
+<<<<<<< HEAD
+=======
+      console.log(response.data)
+>>>>>>> 575a64829d1d969fc21b8b3517be61c561d0b402
       fetchUser()
       setIsCaptionCardVisible(false)
     } catch (e) {

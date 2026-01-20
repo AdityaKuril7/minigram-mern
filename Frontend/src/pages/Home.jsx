@@ -43,7 +43,6 @@ function Home() {
 
   const fetchUserLike = async () => {
     try {
-      
       const response = await axios.get(
         `http://localhost:8000/api/v1/post/getUserLikes/${state?.userId}`,
       );
@@ -58,7 +57,6 @@ function Home() {
   useEffect(() => {
     fetchUser();
     fetchPost();
-    fetchPost();
     fetchUserPosts();
     fetchSavedPosts();
     fetchUserLike();
@@ -66,18 +64,18 @@ function Home() {
     console.log("I am aditya");
 
   }, []);
-  
+
   // Data from the api
   const [userData, setUserData] = useState();
   const [posts, setPosts] = useState([]);
   const [postByUser, setPostByUser] = useState([]);
   const [savedPost, setSavedPost] = useState([]);
   const [likedByUser, setLikedByUser] = useState([]);
-  
+
   //States
   const state = useLocation().state;
-  
-  // profiles or navbar actions 
+
+  // profiles or navbar actions
   const [isAddPostVisible, setIsAddPostVisible] = useState(false);
   const [isUserProfileVisible, setIsUserProfileVisible] = useState(false);
   const [isSavedPostsVisible, setIsSavedPostsVisible] = useState(false);
@@ -107,12 +105,19 @@ function Home() {
         fetchUserLike,
         likedByUser,
         setLikedByUser,
+<<<<<<< HEAD
+        isLikedPostsVisible,
+        setIsLikedPostsVisible,
+=======
         isLikedPostsVisible, setIsLikedPostsVisible,
         isCaptionCardVisible, setIsCaptionCardVisible
+>>>>>>> 4df90be2a09c8cdc3ec1f1dfe9857316cc529137
       }}
     >
       <div className={`Home flex flex-col h-screen w-screen `}>
         <Navbar />
+        <h1>Hello world</h1>
+        <h2>Hi am adiya</h2>
         <AnimatePresence>{isAddPostVisible && <AddPostCard />}</AnimatePresence>
         <AnimatePresence>
           {isUserProfileVisible && <Profile />}
