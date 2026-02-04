@@ -9,6 +9,25 @@ import { AnimatePresence } from "framer-motion";
 import PostCard from "../components/PostCard.jsx";
 import Profile from "../components/Profile.jsx";
 function Home() {
+  // Data from the api
+  const [userData, setUserData] = useState();
+  const [posts, setPosts] = useState([]);
+  const [postByUser, setPostByUser] = useState([]);
+  const [savedPost, setSavedPost] = useState([]);
+  const [likedByUser, setLikedByUser] = useState([]);
+
+  //States
+  const state = useLocation().state;
+
+  // profiles or navbar actions
+  const [isAddPostVisible, setIsAddPostVisible] = useState(false);
+  const [isUserProfileVisible, setIsUserProfileVisible] = useState(false);
+  const [isSavedPostsVisible, setIsSavedPostsVisible] = useState(false);
+  const [isLikedPostsVisible, setIsLikedPostsVisible] = useState(false);
+
+  //constants
+  const [isCaptionCardVisible, setIsCaptionCardVisible] = useState(false);
+  
   const fetchPost = async () => {
     const response = await axios.get(
       "http://localhost:8000/api/v1/post/getPosts",
@@ -45,7 +64,6 @@ function Home() {
       const response = await axios.get(
         `http://localhost:8000/api/v1/post/getUserLikes/${state?.userId}`,
       );
-      console.log(response.data);
       setLikedByUser(response.data);
     } catch (error) {
       console.error("Error fetching likes:", error);
@@ -63,24 +81,6 @@ function Home() {
     console.log("I am aditya");
   }, []);
 
-  // Data from the api
-  const [userData, setUserData] = useState();
-  const [posts, setPosts] = useState([]);
-  const [postByUser, setPostByUser] = useState([]);
-  const [savedPost, setSavedPost] = useState([]);
-  const [likedByUser, setLikedByUser] = useState([]);
-
-  //States
-  const state = useLocation().state;
-
-  // profiles or navbar actions
-  const [isAddPostVisible, setIsAddPostVisible] = useState(false);
-  const [isUserProfileVisible, setIsUserProfileVisible] = useState(false);
-  const [isSavedPostsVisible, setIsSavedPostsVisible] = useState(false);
-  const [isLikedPostsVisible, setIsLikedPostsVisible] = useState(false);
-
-  //constants
-  const [isCaptionCardVisible, setIsCaptionCardVisible] = useState(false);
 
   return (
     <AppContext
