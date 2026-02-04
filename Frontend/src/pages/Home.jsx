@@ -37,7 +37,6 @@ function Home() {
       setSavedPost(response.data);
     } catch (error) {
       console.log(error);
-      
     }
   };
 
@@ -62,7 +61,6 @@ function Home() {
     fetchUserLike();
     console.log("Hello world");
     console.log("I am aditya");
-
   }, []);
 
   // Data from the api
@@ -87,7 +85,8 @@ function Home() {
   return (
     <AppContext
       value={{
-        fetchPost,fetchUser,
+        fetchPost,
+        fetchUser,
         userData,
         posts,
         isAddPostVisible,
@@ -105,19 +104,14 @@ function Home() {
         fetchUserLike,
         likedByUser,
         setLikedByUser,
-<<<<<<< HEAD
         isLikedPostsVisible,
         setIsLikedPostsVisible,
-=======
-        isLikedPostsVisible, setIsLikedPostsVisible,
-        isCaptionCardVisible, setIsCaptionCardVisible
->>>>>>> 4df90be2a09c8cdc3ec1f1dfe9857316cc529137
+        isCaptionCardVisible,
+        setIsCaptionCardVisible,
       }}
     >
       <div className={`Home flex flex-col h-screen w-screen `}>
         <Navbar />
-        <h1>Hello world</h1>
-        <h2>Hi am adiya</h2>
         <AnimatePresence>{isAddPostVisible && <AddPostCard />}</AnimatePresence>
         <AnimatePresence>
           {isUserProfileVisible && <Profile />}
