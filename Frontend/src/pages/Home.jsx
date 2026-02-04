@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import Navbar from "../components/Navbar.jsx";
 import AppContext from "../Context/AppContext.js";
 import axios from "axios";
@@ -9,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import PostCard from "../components/PostCard.jsx";
 import Profile from "../components/Profile.jsx";
 function Home() {
+
   // Data from the api
   const [userData, setUserData] = useState();
   const [posts, setPosts] = useState([]);
@@ -77,8 +77,6 @@ function Home() {
     fetchUserPosts();
     fetchSavedPosts();
     fetchUserLike();
-    console.log("Hello world");
-    console.log("I am aditya");
   }, []);
 
 

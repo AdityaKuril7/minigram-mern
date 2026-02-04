@@ -19,11 +19,11 @@ function PostCard({ post }) {
     isUserProfileVisible,
     fetchUserLike,
     fetchUserPosts,
-    fetchPost
+    fetchPost,
   } = useContext(AppContext);
 
   const isSaved = savedPost.some(
-    (item) => item?.postDetails?._id.toString() === post._id.toString()
+    (item) => item?.postDetails?._id.toString() === post._id.toString(),
   );
   const isLiked =
     Array.isArray(likedByUser) &&
@@ -35,7 +35,7 @@ function PostCard({ post }) {
         {
           userId: userData?.user?._id,
           postId: post._id,
-        }
+        },
       );
       fetchUserLike();
     } else {
@@ -44,21 +44,23 @@ function PostCard({ post }) {
         {
           userId: userData?.user?._id,
           postId: post._id,
-        }
+        },
       );
       fetchUserLike();
     }
   };
 
-  const handlePostDelete = async () =>{
-    const msg = prompt("Are Your sure ? yes or no ")
-    if(msg.toLowerCase() === 'yes'){  
-      const response = await axios.delete(`http://localhost:8000/api/v1/post/deletePost/${post._id}`)
-      if(!response.data.success) return console.log(response.data)
-      fetchPost()
-      fetchUserPosts()
-   }
-  }
+  const handlePostDelete = async () => {
+    const msg = prompt("Are Your sure ? yes or no ");
+    if (msg.toLowerCase() === "yes") {
+      const response = await axios.delete(
+        `http://localhost:8000/api/v1/post/deletePost/${post._id}`,
+      );
+      if (!response.data.success) return console.log(response.data);
+      fetchPost();
+      fetchUserPosts();
+    }
+  };
 
   const handleSave = async () => {
     if (isSaved) {
@@ -67,7 +69,7 @@ function PostCard({ post }) {
         {
           userId: userData?.user?._id,
           postId: post._id,
-        }
+        },
       );
       fetchSavedPosts();
     } else {
@@ -76,7 +78,7 @@ function PostCard({ post }) {
         {
           userId: userData?.user?._id,
           postId: post._id,
-        }
+        },
       );
       fetchSavedPosts();
     }
@@ -99,7 +101,10 @@ function PostCard({ post }) {
         {isUserProfileVisible && (
           <div className="flex w-50 justify-end">
             <p>
-               <FaTrash className="text-red-500 text-lg" onClick={handlePostDelete} />
+              <FaTrash
+                className="text-red-500 text-lg"
+                onClick={handlePostDelete}
+              />
             </p>
           </div>
         )}
@@ -112,6 +117,8 @@ function PostCard({ post }) {
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
+
+      <div className="px-5 py-3 font-semibold">{post?.caption}</div>
 
       <div className="px-5 py-3 flex justify-around">
         <span className="flex gap-2 items-center">
